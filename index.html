@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TabiMemo - 旅行先・観光スポット検索</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="base.css">
+    <link rel="icon" href="favicon.png">
+    <style>
+        .spot-card img {
+            width: 100%;
+            height: 30vw;
+            max-height: 300px;
+            object-fit: cover;
+        }
+
+        .ranking-card {
+            transition: transform 0.2s ease;
+        }
+
+        .ranking-card img {
+            width: auto;
+            height: 150px;
+            object-fit: cover;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .ranking-card:hover {
+            transform: scale(1.02);
+        }
+
+        .ranking-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            opacity: 0.2;
+        }
+
+        @media (max-width: 767.98px) {
+            .spot-card img {
+                object-position: 50% 40%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">
+                <i class="bi bi-airplane-engines"></i> TabiMemo
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">ホーム</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="mokuteki.html">目的地一覧</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="spot-ranking.html">人気ランキング</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="my-trips.html">行きたいリスト</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="travel-community.html">旅ログ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-lg-none" href="login.html">ログイン</a>
+                    </li>
+                </ul>
+                <a href="login.html" class="btn btn-light ms-3 d-none d-lg-block">
+                    <i class="bi bi-person-circle"></i> ログイン</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero-section">
+        <div class="container text-center">
+            <h1 class="display-3 fw-bold mb-4">次の旅先、見つけよう</h1>
+            <p class="lead mb-4">国内外10,000以上の観光地から、あなたにぴったりのプランを</p>
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="input-group input-group-lg">
+                        <input type="text" class="form-control" placeholder="場所、キーワードで検索...">
+                        <button class="btn btn-light" type="button">
+                            <i class="bi bi-search"></i> 検索
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <section class="mb-5">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="fw-bold">
+                    <i class="bi bi-geo-alt-fill text-danger"></i> 今月の注目スポット
+                </h2>
+                <a href="#" class="btn btn-outline-dark">すべて見る <i class="bi bi-arrow-right"></i></a>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card spot-card position-relative">
+                        <img src="images/spot-arashiyama-key.jpg" class="card-img-top img-fluid" alt="京都・嵐山">
+                        <div class="card-body">
+                            <span class="badge bg-primary mb-2">国内旅行</span>
+                            <span class="badge bg-success mb-2">シーズン</span>
+                            <h5 class="card-title fw-bold card-title-nowrap">京都・嵐山 竹林の小径</h5>
+                            <p class="card-text text-muted text-clamp-3">静寂に包まれた竹林の中を歩く、京都を代表する観光名所。四季折々の美しさがあり、特に早朝の散策は心が洗われるような体験を提供します。</p>
+                            <a href="spot-detail.html" class="stretched-link"></a>
+                            <div class="d-flex flex-column flex-sm-row flex-md-column flex-lg-row justify-content-between align-items-start align-items-sm-center align-items-md-start align-items-lg-center">
+                                <div class="rating-stars mb-2 mb-sm-0 mb-md-2 mb-lg-0">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-half"></i>
+                                    <span class="text-dark ms-1">4.7</span>
+                                </div>
+                                <small class="text-muted">3,120件の口コミ</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card spot-card">
+                        <img src="images/pixta_54999629_M.jpg" class="card-img-top" alt="北海道・富良野">
+                        <div class="card-body">
+                            <span class="badge bg-primary mb-2">国内旅行</span>
+                            <span class="badge bg-success mb-2">シーズン</span>
+                            <h5 class="card-title fw-bold card-title-nowrap">富良野・ラベンダー畑</h5>
+                            <p class="card-text text-muted text-clamp-3">夏に訪れたい絶景スポット。一面に広がる紫色の絨毯と、爽やかな北海道の風が、都会の喧騒を忘れさせてくれる至福のひとときを約束します。</p>
+                            <div class="d-flex flex-column flex-sm-row flex-md-column flex-lg-row justify-content-between align-items-start align-items-sm-center align-items-md-start align-items-lg-center">
+                                <div class="rating-stars mb-2 mb-sm-0 mb-md-2 mb-lg-0">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <span class="text-dark ms-1">4.9</span>
+                                </div>
+                                <small class="text-muted">2,850件の口コミ</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card spot-card">
+                        <img src="images/travelguide_174_01.jpg" class="card-img-top" alt="沖縄・宮古島">
+                        <div class="card-body">
+                            <span class="badge bg-info mb-2">リゾート</span>
+                            <span class="badge bg-success mb-2">人気上昇中</span>
+                            <h5 class="card-title fw-bold card-title-nowrap">宮古島・与那覇前浜ビーチ</h5>
+                            <p class="card-text text-muted text-clamp-3">「東洋一の美しさ」と称される白い砂浜とエメラルドグリーンの海。マリンスポーツはもちろん、沈む夕日を眺めながらの贅沢な時間を過ごせます。</p>
+                            <div class="d-flex flex-column flex-sm-row flex-md-column flex-lg-row justify-content-between align-items-start align-items-sm-center align-items-md-start align-items-lg-center">
+                                <div class="rating-stars mb-2 mb-sm-0 mb-md-2 mb-lg-0">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star"></i>
+                                    <span class="text-dark ms-1">4.4</span>
+                                </div>
+                                <small class="text-muted">1,540件の口コミ</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-5">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2 class="fw-bold">
+                        <i class="bi bi-trophy-fill text-warning"></i> 人気ランキング
+                    </h2>
+                    <ul class="nav nav-pills" id="rankingTabTop" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="weeklyTabTop" data-bs-toggle="pill"
+                                data-bs-target="#weeklyTop" type="button" role="tab">
+                                週間
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="monthlyTabTop" data-bs-toggle="pill"
+                                data-bs-target="#monthlyTop" type="button" role="tab">
+                                月間
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="seasonalTabTop" data-bs-toggle="pill"
+                                data-bs-target="#seasonalTop" type="button" role="tab">
+                                年間
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="tab-content" id="rankingTabContent">
+                    <div class="tab-pane fade show active" id="weeklyTop" role="tabpanel">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="card ranking-card">
+                                    <div class="card-body">
+                                        <div class="row align-items-center">
+                                            <div class="col-2 text-center">
+                                                <div class="ranking-number">1</div>
+                                            </div>
+                                            <div class="col-3">
+                                                <img src="images/photo01.jpg" class="img-fluid rounded" alt="白川郷">
+                                            </div>
+                                            <div class="col-7">
+                                                <span class="badge bg-warning text-dark mb-2">1位</span>
+                                                <h5 class="fw-bold mb-2 card-title-nowrap">世界遺産・白川郷</h5>
+                                                <p class="text-muted small mb-2 text-clamp-2">合掌造りの集落が残る日本の原風景。冬のライトアップは幻想的で、世界中から観光客が訪れます。</p>
+                                                <div class="rating-stars small">
+                                                    <i class="bi bi-star-fill"></i>
+                                                    <i class="bi bi-star-fill"></i>
+                                                    <i class="bi bi-star-fill"></i>
+                                                    <i class="bi bi-star-fill"></i>
+                                                    <i class="bi bi-star-half"></i>
+                                                    <span class="text-dark">4.9</span>
+                                                </div>
+                                                <small class="text-muted">5,620件の口コミ</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-5">
+            <h2 class="fw-bold mb-4">
+                <i class="bi bi-grid-3x3-gap-fill"></i> 目的から探す
+            </h2>
+            <div class="row g-3">
+                <div class="col-6 col-md-3">
+                    <a href="#" class="text-decoration-none">
+                        <div class="card text-center h-100 border-primary">
+                            <div class="card-body">
+                                <i class="bi bi-tsunami display-4 text-primary"></i>
+                                <h5 class="mt-3">温泉・旅館</h5>
+                                <small class="text-muted">2,450ヶ所</small>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-6 col-md-3">
+                    <a href="#" class="text-decoration-none">
+                        <div class="card text-center h-100 border-danger">
+                            <div class="card-body">
+                                <i class="bi bi-egg-fried display-4 text-danger"></i>
+                                <h5 class="mt-3">グルメ旅</h5>
+                                <small class="text-muted">1,890プラン</small>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-6 col-md-3">
+                    <a href="#" class="text-decoration-none">
+                        <div class="card text-center h-100 border-warning">
+                            <div class="card-body">
+                                <i class="bi bi-mountain display-4 text-warning"></i>
+                                <h5 class="mt-3">自然・体験</h5>
+                                <small class="text-muted">3,200スポット</small>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-6 col-md-3">
+                    <a href="#" class="text-decoration-none">
+                        <div class="card text-center h-100 border-info">
+                            <div class="card-body">
+                                <i class="bi bi-building display-4 text-info"></i>
+                                <h5 class="mt-3">都市・街歩き</h5>
+                                <small class="text-muted">1,500エリア</small>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <h5 class="fw-bold mb-3"><i class="bi bi-airplane-engines"></i> TabiMemo</h5>
+                    <p class="text-light">あなたの思い出になる旅を、ここから見つけよう。</p>
+                </div>
+                <div class="col-md-2 mb-3">
+                    <h6 class="fw-bold mb-3">サイト情報</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-light text-decoration-none">運営会社</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">利用規約</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">ガイドライン</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 mb-3">
+                    <h6 class="fw-bold mb-3">サポート</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-light text-decoration-none">ヘルプ</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">お問い合わせ</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h6 class="fw-bold mb-3">SNSで旅をチェック</h6>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-light"><i class="bi bi-twitter-x fs-4"></i></a>
+                        <a href="#" class="text-light"><i class="bi bi-instagram fs-4"></i></a>
+                        <a href="#" class="text-light"><i class="bi bi-facebook fs-4"></i></a>
+                        <a href="#" class="text-light"><i class="bi bi-threads fs-4"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="border-light">
+            <p class="text-center text-light mb-0">&copy; 2026 TabiMemo. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <button id="backToTopBtn" class="btn shadow d-flex align-items-center justify-content-center">
+        <i class="bi bi-chevron-up"></i>
+    </button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="common.js"></script>
+</body>
+
+</html>
