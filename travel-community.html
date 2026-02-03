@@ -64,8 +64,8 @@
     <!-- ナビゲーションバー -->
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="index.html">
-                <i class="bi bi-film"></i> AniListo
+            <a class="navbar-brand fw-bold" href="#">
+                <i class="bi bi-airplane-engines"></i> TabiMemo
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -73,25 +73,25 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">ホーム</a>
+                        <a class="nav-link active" href="index.html">ホーム</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="anime-list.html">作品一覧</a>
+                        <a class="nav-link" href="mokuteki.html">目的地一覧</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="anime-ranking.html">ランキング</a>
+                        <a class="nav-link" href="spot-ranking.html">人気ランキング</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="anime-mylist.html">マイリスト</a>
+                        <a class="nav-link" href="my-ryokou.html">行きたいリスト</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">コミュニティ</a>
+                        <a class="nav-link" href="travel-community.html">旅ログ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link d-lg-none" href="anime-login.html">ログイン</a>
+                        <a class="nav-link d-lg-none" href="login.html">ログイン</a>
                     </li>
                 </ul>
-                <a href="anime-login.html" class="btn btn-light ms-3 d-none d-lg-block">
+                <a href="login.html" class="btn btn-light ms-3 d-none d-lg-block">
                     <i class="bi bi-person-circle"></i> ログイン</a>
             </div>
         </div>
@@ -114,9 +114,9 @@
     <div class="page-heading">
         <div class="container">
             <h1 class="display-4 fw-bold mb-3">
-                <i class="bi bi-chat-dots-fill"></i> コミュニティ
+                <i class="bi bi-chat-dots-fill"></i> みんなの旅ログ
             </h1>
-            <p class="lead">アニメ好きと繋がろう!感想や考察をシェアしよう</p>
+            <p class="lead">みんなと旅行先のここがいい！を共有しよう</p>
         </div>
     </div>
 
@@ -135,24 +135,24 @@
                         <form id="postForm">
                             <!-- 作品選択 -->
                             <div class="mb-3">
-                                <label for="animeSelect" class="form-label fw-bold">作品を選択 <span
+                                <label for="animeSelect" class="form-label fw-bold">旅行先を選択 <span
                                         class="text-danger">*</span></label>
                                 <select class="form-select" id="animeSelect" required>
-                                    <option value="" disabled selected hidden>作品を選択してください</option>
-                                    <option value="1">異世界の勇者 ～運命の旅路～</option>
-                                    <option value="2">桜色の約束</option>
-                                    <option value="3">量子戦士クロノス</option>
-                                    <option value="4">魔法学園の日常</option>
-                                    <option value="5">竜騎士の伝説</option>
+                                    <option value="" disabled selected hidden>旅行先を選択してください</option>
+                                    <option value="1">京都・嵐山</option>
+                                    <option value="2">京都・伏見稲荷大社</option>
+                                    <option value="3">京都・清水寺</option>
+                                    <option value="4">札幌・北海道</option>
+                                    <option value="5">沖縄・宮古島・伊良部島</option>
                                 </select>
-                                <small class="text-danger d-none" id="animeError">作品を選択してください</small>
+                                <small class="text-danger d-none" id="animeError">旅行先を選択してください</small>
                             </div>
 
                             <!-- 投稿タイトル -->
                             <div class="mb-3">
                                 <label for="postTitle" class="form-label fw-bold">タイトル <span
                                         class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="postTitle" placeholder="例: 第8話の展開が神すぎた!"
+                                <input type="text" class="form-control" id="postTitle" placeholder="例: ここに旅行したら人生が変わった！"
                                     required>
                                 <small class="text-danger d-none" id="titleError">タイトルは30文字以内で入力してください</small>
                             </div>
@@ -163,11 +163,11 @@
                                         class="text-danger">*</span></label>
                                 <select class="form-select" id="categorySelect" required>
                                     <option value="" disabled selected hidden>カテゴリを選択</option>
-                                    <option value="impression">感想</option>
-                                    <option value="theory">考察</option>
-                                    <option value="question">質問</option>
-                                    <option value="discussion">議論</option>
-                                    <option value="fanart">ファンアート</option>
+                                    <option value="impression">日本国内</option>
+                                    <option value="theory">京都</option>
+                                    <option value="question">北海道</option>
+                                    <option value="discussion">沖縄</option>
+                                    <option value="fanart">福岡</option>
                                 </select>
                                 <small class="text-danger d-none" id="categoryError">カテゴリを選択してください</small>
                             </div>
@@ -177,24 +177,15 @@
                                 <label for="postContent" class="form-label fw-bold">本文 <span
                                         class="text-danger">*</span></label>
                                 <textarea class="form-control" id="postContent" rows="6"
-                                    placeholder="あなたの感想や考察を書いてください..." required></textarea>
+                                    placeholder="あなたの旅行先への思いや感想を書いてください..." required></textarea>
                                 <small class="text-danger d-none" id="contentError">本文は500文字以内で入力してください</small>
-                            </div>
-
-                            <div class="mb-3">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="spoilerCheck">
-                                    <label class="form-check-label" for="spoilerCheck">
-                                        <span class="badge bg-danger">ネタバレ注意</span> この投稿にはネタバレが含まれます
-                                    </label>
-                                </div>
                             </div>
 
 
                             <div class="mb-3">
                                 <label for="tagInput" class="form-label fw-bold">タグ（任意）</label>
                                 <input type="text" class="form-control" id="tagInput"
-                                    placeholder="例: 感動, バトルシーン, キャラクター">
+                                    placeholder="例: 日本国内、京都、沖縄">
                                 <div class="form-text">カンマ区切りで複数のタグを入力できます</div>
                             </div>
 
@@ -321,15 +312,16 @@
                         <div class="row g-2">
                             <div class="col-md-4">
                                 <select class="form-select form-select-sm">
-                                    <option>すべての作品</option>
-                                    <option>視聴中の作品のみ</option>
+                                    <option>すべての旅行先</option>
+                                    <option>東北</option>
+                                    <option>関東</option>
+                                    <option>関西</option>
                                 </select>
                             </div>
                             <div class="col-md-4">
                                 <select class="form-select form-select-sm">
                                     <option>すべてのカテゴリ</option>
                                     <option>感想</option>
-                                    <option>考察</option>
                                     <option>質問</option>
                                 </select>
                             </div>
@@ -356,7 +348,7 @@
                             <div class="flex-grow-1">
                                 <div class="d-flex justify-content-between align-items-start">
                                     <div>
-                                        <h6 class="mb-1 fw-bold">アニメ大好きさん</h6>
+                                        <h6 class="mb-1 fw-bold">旅行大好きさん</h6>
                                         <small class="text-muted">
                                             <i class="bi bi-clock"></i> 5分前
                                             <span class="badge bg-primary ms-2">感想</span>
@@ -366,18 +358,18 @@
                             </div>
                         </div>
                         <h5 class="card-title fw-bold mb-2">
-                            <a href="#" class="text-decoration-none text-dark">第8話の展開が神すぎた!</a>
+                            <a href="#" class="text-decoration-none text-dark">嵐山に初めて行ってみたけどすごすぎた！</a>
                         </h5>
                         <p class="text-muted small mb-2">
-                            <i class="bi bi-film"></i> 異世界の勇者 ～運命の旅路～
+                            <i class="bi bi-airplane-engines"></i> 京都・嵐山
                         </p>
                         <p class="card-text">
-                            今週の第8話、まさかあの展開になるとは思いませんでした!特にラストシーンは鳥肌モノでしたね。来週がもう待ちきれません...
+                            渡月橋を渡った瞬間、日常から切り離されたような感覚になりました。竹林の小径では、風に揺れる竹の音と木漏れ日が本当に幻想的。天龍寺の庭園を眺めながら、ただ静かに流れる時間を楽しむという、最高に贅沢な休日を過ごせました。また違う季節にも絶対来たい！
                         </p>
                         <div class="d-flex gap-2 mb-3">
                             <span class="badge bg-info">#感動</span>
-                            <span class="badge bg-info">#神回</span>
-                            <span class="badge bg-info">#続き気になる</span>
+                            <span class="badge bg-info">#京都</span>
+                            <span class="badge bg-info">#日本国内</span>
                         </div>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="d-flex gap-3">
@@ -407,29 +399,28 @@
                             <div class="flex-grow-1">
                                 <div class="d-flex justify-content-between align-items-start">
                                     <div>
-                                        <h6 class="mb-1 fw-bold">考察マスター</h6>
+                                        <h6 class="mb-1 fw-bold">はなちゃん</h6>
                                         <small class="text-muted">
                                             <i class="bi bi-clock"></i> 1時間前
-                                            <span class="badge bg-warning text-dark ms-2">考察</span>
-                                            <span class="badge bg-danger ms-1">ネタバレ注意</span>
+                                            <span class="badge bg-primary ms-2">感想</span>
                                         </small>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <h5 class="card-title fw-bold mb-2">
-                            <a href="#" class="text-decoration-none text-dark">魔王の真の目的について【考察】</a>
+                            <a href="#" class="text-decoration-none text-dark">念願の京都旅行</a>
                         </h5>
                         <p class="text-muted small mb-2">
-                            <i class="bi bi-film"></i> 異世界の勇者 ～運命の旅路～
+                            <i class="bi bi-airplane-engines"></i> 京都・嵐山
                         </p>
                         <p class="card-text">
-                            これまでの描写から、魔王ゼノンの真の目的は世界征服ではなく、別の何かを求めているのではないでしょうか。第7話での賢者との会話シーンが重要な伏線だと思います...
+                            念願の嵐山！竹林のパワーに圧倒された1日🎋 渡月橋からの眺めも最高で、歩いているだけで心が洗われる気分。食べ歩きも充実してて、お腹も心も大満足です。
                         </p>
                         <div class="d-flex gap-2 mb-3">
-                            <span class="badge bg-info">#考察</span>
-                            <span class="badge bg-info">#伏線回収</span>
-                            <span class="badge bg-info">#魔王</span>
+                            <span class="badge bg-info">#念願</span>
+                            <span class="badge bg-info">#京都旅行</span>
+                            <span class="badge bg-info">#渡月橋</span>
                         </div>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="d-flex gap-3">
@@ -449,57 +440,6 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- 投稿カード3 -->
-                <div class="card post-card mb-3">
-                    <div class="card-body">
-                        <div class="d-flex mb-3">
-                            <img src="https://placehold.co/50x50/10b981/ffffff?text=U3" class="user-avatar me-3"
-                                alt="ユーザー">
-                            <div class="flex-grow-1">
-                                <div class="d-flex justify-content-between align-items-start">
-                                    <div>
-                                        <h6 class="mb-1 fw-bold">アニメ初心者</h6>
-                                        <small class="text-muted">
-                                            <i class="bi bi-clock"></i> 3時間前
-                                            <span class="badge bg-success ms-2">質問</span>
-                                        </small>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <h5 class="card-title fw-bold mb-2">
-                            <a href="#" class="text-decoration-none text-dark">エリナとルナ、どちらが人気ですか?</a>
-                        </h5>
-                        <p class="text-muted small mb-2">
-                            <i class="bi bi-film"></i> 異世界の勇者 ～運命の旅路～
-                        </p>
-                        <p class="card-text">
-                            最近この作品を見始めたのですが、ヒロインが魅力的で選べません!みなさんはエリナとルナ、どちらが好きですか?それぞれの魅力を教えてください。
-                        </p>
-                        <div class="d-flex gap-2 mb-3">
-                            <span class="badge bg-info">#ヒロイン</span>
-                            <span class="badge bg-info">#キャラクター</span>
-                        </div>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="d-flex gap-3">
-                                <button class="btn btn-sm btn-outline-primary">
-                                    <i class="bi bi-hand-thumbs-up"></i>
-                                    <span class="d-none d-sm-inline"> いいね (45)</span>
-                                </button>
-                                <button class="btn btn-sm btn-outline-secondary">
-                                    <i class="bi bi-chat"></i>
-                                    <span class="d-none d-sm-inline"> コメント (12)</span>
-                                </button>
-                                <button class="btn btn-sm btn-outline-info">
-                                    <i class="bi bi-share"></i>
-                                    <span class="d-none d-sm-inline"> シェア</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- ページネーション -->
                 <nav aria-label="投稿ページネーション">
                     <ul class="pagination justify-content-center">
@@ -530,8 +470,8 @@
                             <li class="list-group-item px-0">
                                 <div class="d-flex justify-content-between align-items-start">
                                     <div>
-                                        <h6 class="mb-1">第8話の伏線がすごい</h6>
-                                        <small class="text-muted">異世界の勇者</small>
+                                        <h6 class="mb-1">念願の京都旅行</h6>
+                                        <small class="text-muted">京都・嵐山</small>
                                     </div>
                                     <span class="badge bg-primary">234</span>
                                 </div>
@@ -539,28 +479,10 @@
                             <li class="list-group-item px-0">
                                 <div class="d-flex justify-content-between align-items-start">
                                     <div>
-                                        <h6 class="mb-1">EDの歌詞の意味を考察</h6>
-                                        <small class="text-muted">桜色の約束</small>
+                                        <h6 class="mb-1">渡月橋からの眺め</h6>
+                                        <small class="text-muted">京都・嵐山・渡月橋</small>
                                     </div>
                                     <span class="badge bg-primary">189</span>
-                                </div>
-                            </li>
-                            <li class="list-group-item px-0">
-                                <div class="d-flex justify-content-between align-items-start">
-                                    <div>
-                                        <h6 class="mb-1">キャラクター人気投票</h6>
-                                        <small class="text-muted">全作品</small>
-                                    </div>
-                                    <span class="badge bg-primary">567</span>
-                                </div>
-                            </li>
-                            <li class="list-group-item px-0">
-                                <div class="d-flex justify-content-between align-items-start">
-                                    <div>
-                                        <h6 class="mb-1">おすすめの類似作品</h6>
-                                        <small class="text-muted">魔法学園の日常</small>
-                                    </div>
-                                    <span class="badge bg-primary">123</span>
                                 </div>
                             </li>
                         </ul>
@@ -579,7 +501,7 @@
                                     <img src="https://placehold.co/30x30/6366f1/ffffff?text=U1"
                                         class="user-avatar-small me-2" alt="ユーザー">
                                     <div>
-                                        <h6 class="mb-0 small">アニメ大好きさん</h6>
+                                        <h6 class="mb-0 small">旅行大好きさん</h6>
                                         <small class="text-muted">オンライン</small>
                                     </div>
                                 </div>
@@ -589,7 +511,7 @@
                                     <img src="https://placehold.co/30x30/ec4899/ffffff?text=U2"
                                         class="user-avatar-small me-2" alt="ユーザー">
                                     <div>
-                                        <h6 class="mb-0 small">考察マスター</h6>
+                                        <h6 class="mb-0 small">はなちゃん</h6>
                                         <small class="text-muted">オンライン</small>
                                     </div>
                                 </div>
@@ -599,7 +521,7 @@
                                     <img src="https://placehold.co/30x30/10b981/ffffff?text=U3"
                                         class="user-avatar-small me-2" alt="ユーザー">
                                     <div>
-                                        <h6 class="mb-0 small">週末アニメ視聴者</h6>
+                                        <h6 class="mb-0 small">毎日旅行行きたい人</h6>
                                         <small class="text-muted">5分前</small>
                                     </div>
                                 </div>
@@ -609,7 +531,7 @@
                                     <img src="https://placehold.co/30x30/8b5cf6/ffffff?text=U4"
                                         class="user-avatar-small me-2" alt="ユーザー">
                                     <div>
-                                        <h6 class="mb-0 small">深夜アニメファン</h6>
+                                        <h6 class="mb-0 small">旅人＠日本一周中</h6>
                                         <small class="text-muted">10分前</small>
                                     </div>
                                 </div>
@@ -653,9 +575,8 @@
                     <div class="card-body">
                         <ul class="small mb-0">
                             <li class="mb-2">他のユーザーを尊重しましょう</li>
-                            <li class="mb-2">ネタバレには警告をつけましょう</li>
+                            <li class="mb-2">旅行先についての愚痴などは控えましょう</li>
                             <li class="mb-2">誹謗中傷は禁止です</li>
-                            <li class="mb-2">著作権を尊重しましょう</li>
                             <li>スパム行為は禁止です</li>
                         </ul>
                     </div>
@@ -715,15 +636,15 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4 mb-3">
-                    <h5 class="fw-bold mb-3"><i class="bi bi-film"></i> AniListo</h5>
-                    <p class="text-light">あなたの好きなアニメを見つけて、共有しよう。</p>
+                    <h5 class="fw-bold mb-3"><i class="bi bi-airplane-engines"></i> TabiMemo</h5>
+                    <p class="text-light">あなたの思い出になる旅を、ここから見つけよう。</p>
                 </div>
                 <div class="col-md-2 mb-3">
                     <h6 class="fw-bold mb-3">サイト情報</h6>
                     <ul class="list-unstyled">
-                        <li><a href="#" class="text-light text-decoration-none">About</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">運営会社</a></li>
                         <li><a href="#" class="text-light text-decoration-none">利用規約</a></li>
-                        <li><a href="#" class="text-light text-decoration-none">プライバシー</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">ガイドライン</a></li>
                     </ul>
                 </div>
                 <div class="col-md-2 mb-3">
@@ -735,17 +656,17 @@
                     </ul>
                 </div>
                 <div class="col-md-4 mb-3">
-                    <h6 class="fw-bold mb-3">フォローする</h6>
+                    <h6 class="fw-bold mb-3">SNSで旅をチェック</h6>
                     <div class="d-flex gap-3">
-                        <a href="#" class="text-light"><i class="bi bi-twitter fs-4"></i></a>
+                        <a href="#" class="text-light"><i class="bi bi-twitter-x fs-4"></i></a>
                         <a href="#" class="text-light"><i class="bi bi-instagram fs-4"></i></a>
-                        <a href="#" class="text-light"><i class="bi bi-youtube fs-4"></i></a>
-                        <a href="#" class="text-light"><i class="bi bi-discord fs-4"></i></a>
+                        <a href="#" class="text-light"><i class="bi bi-facebook fs-4"></i></a>
+                        <a href="#" class="text-light"><i class="bi bi-threads fs-4"></i></a>
                     </div>
                 </div>
-                <hr class="border-light">
-                <p class="text-center text-light mb-0">&copy; 2025 AniListo. All rights reserved.</p>
             </div>
+            <hr class="border-light">
+            <p class="text-center text-light mb-0">&copy; 2026 TabiMemo. All rights reserved.</p>
         </div>
     </footer>
     <button id="backToTopBtn" class="btn shadow d-flex align-items-center justify-content-center">
