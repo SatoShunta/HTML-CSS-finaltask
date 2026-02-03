@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TabiMemo - 旅行先・観光スポット検索</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="base.css">
+    <style>
+        /* レイアウト変更用の追加スタイル */
+        .hero-section {
+            padding: 60px 0; /* 高さを抑えてすぐにコンテンツが見えるように変更 */
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('images/hero-bg.jpg') center/cover;
+        }
+
+        /* 横長カード形式 (注目スポット用) */
+        .spot-card-horizontal {
+            display: flex;
+            flex-direction: row;
+            border: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        .spot-card-horizontal:hover { transform: translateY(-5px); }
+        .spot-card-horizontal img {
+            width: 40%;
+            height: 250px;
+            object-fit: cover;
+        }
+        .spot-card-horizontal .card-body {
+            width: 60%;
+            padding: 1.5rem;
+        }
+
+        /* ランキングのグリッドデザイン変更 */
+        .ranking-grid-item {
+            background: #fff;
+            border-radius: 12px;
+            padding: 1rem;
+            border: 1px solid #eee;
+            position: relative;
+        }
+        .ranking-badge-top {
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            z-index: 10;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .spot-card-horizontal { flex-direction: column; }
+            .spot-card-horizontal img { width: 100%; height: 200px; }
+            .spot-card-horizontal .card-body { width: 100%; }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#"><i class="bi bi-airplane-engines"></i> TabiMemo</a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#">ホーム</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">目的地一覧</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">ランキング</a></li>
+                </ul>
+                <a href="#" class="btn btn-outline-light ms-3">ログイン</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero-section text-white text-center">
+        <div class="container">
+            <h1 class="display-5 fw-bold mb-3">次の旅先、見つけよう</h1>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="bg-white p-2 rounded-pill shadow d-flex">
+                        <input type="text" class="form-control border-0 rounded-pill" placeholder="どこへ行きたいですか？">
+                        <button class="btn btn-primary rounded-pill px-4 ms-2">検索</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-5">
+        <section class="mb-5">
+            <h2 class="fw-bold mb-4"><i class="bi bi-geo-alt-fill text-danger"></i> 今月の編集部おすすめ</h2>
+            <div class="row g-4">
+                <div class="col-12">
+                    <div class="card spot-card-horizontal">
+                        <img src="images/kyoto.webp" alt="京都">
+                        <div class="card-body d-flex flex-column justify-content-center">
+                            <div>
+                                <span class="badge bg-primary mb-2">国内旅行</span>
+                                <h3 class="fw-bold">京都・嵐山 竹林の小径</h3>
+                                <p class="text-muted">静寂に包まれた竹林の中を歩く、京都を代表する観光名所。早朝の散策が特におすすめです。</p>
+                            </div>
+                            <div class="mt-auto d-flex justify-content-between align-items-center">
+                                <div class="rating text-warning">
+                                    <i class="bi bi-star-fill"></i> 4.7 <span class="text-muted small">(3,120件)</span>
+                                </div>
+                                <a href="#" class="btn btn-dark btn-sm rounded-pill">詳細を見る</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+        </section>
+
+        <section class="mb-5 py-4 bg-light rounded-4 px-3">
+            <div class="d-flex justify-content-between align-items-end mb-4">
+                <h2 class="fw-bold mb-0"><i class="bi bi-trophy-fill text-warning"></i> 人気ランキング</h2>
+                <div class="btn-group btn-group-sm">
+                    <button class="btn btn-outline-secondary active">週間</button>
+                    <button class="btn btn-outline-secondary">月間</button>
+                </div>
+            </div>
+            
+            <div class="row g-3">
+                <div class="col-6 col-md-3">
+                    <div class="ranking-grid-item">
+                        <span class="ranking-badge-top bg-warning text-dark">No.1</span>
+                        <img src="images/spot1.webp" class="img-fluid rounded mb-2" alt="1位">
+                        <h6 class="fw-bold mb-1">白川郷</h6>
+                        <p class="small text-muted mb-0">岐阜県・世界遺産</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="ranking-grid-item text-center">
+                        <span class="ranking-badge-top bg-secondary text-white">No.2</span>
+                        <img src="images/spot2.webp" class="img-fluid rounded mb-2" alt="2位">
+                        <h6 class="fw-bold mb-1">宮古島</h6>
+                        <p class="small text-muted mb-0">沖縄県・ビーチ</p>
+                    </div>
+                </div>
+                </div>
+        </section>
+
+        <section class="mb-5">
+            <h2 class="fw-bold mb-4"><i class="bi bi-grid-3x3-gap-fill"></i> 目的から探す</h2>
+            <div class="row g-3">
+                </div>
+        </section>
+    </div>
+
+    </body>
+</html>
