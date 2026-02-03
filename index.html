@@ -9,7 +9,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="base.css">
     <link rel="icon" href="favicon.png">
     <style>
@@ -43,6 +45,32 @@
             opacity: 0.2;
         }
 
+        /* 横長カード形式 (注目スポット用) */
+        .spot-card-horizontal {
+            display: flex;
+            flex-direction: row;
+            border: none;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .spot-card-horizontal:hover {
+            transform: translateY(-5px);
+        }
+
+        .spot-card-horizontal img {
+            width: 40%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .spot-card-horizontal .card-body {
+            width: 60%;
+            padding: 1.5rem;
+        }
+
         @media (max-width: 767.98px) {
             .spot-card img {
                 object-position: 50% 40%;
@@ -72,7 +100,7 @@
                         <a class="nav-link" href="spot-ranking.html">人気ランキング</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="my-trips.html">行きたいリスト</a>
+                        <a class="nav-link" href="my-ryokou.html">行きたいリスト</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="travel-community.html">旅ログ</a>
@@ -90,7 +118,7 @@
     <div class="hero-section">
         <div class="container text-center">
             <h1 class="display-3 fw-bold mb-4">次の旅先、見つけよう</h1>
-            <p class="lead mb-4">国内外10,000以上の観光地から、あなたにぴったりのプランを</p>
+            <p class="lead mb-4">国内10,000以上の観光地から、あなたにぴったりのプランを</p>
             <div class="row justify-content-center">
                 <div class="col-md-6">
                     <div class="input-group input-group-lg">
@@ -106,79 +134,44 @@
 
     <div class="container">
         <section class="mb-5">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <h2 class="fw-bold">
-                    <i class="bi bi-geo-alt-fill text-danger"></i> 今月の注目スポット
-                </h2>
-                <a href="#" class="btn btn-outline-dark">すべて見る <i class="bi bi-arrow-right"></i></a>
-            </div>
-
+            <h2 class="fw-bold mb-4"><i class="bi bi-geo-alt-fill text-danger"></i> 今月は京都がおすすめ！</h2>
             <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="card spot-card position-relative">
-                        <img src="images/spot-arashiyama-key.jpg" class="card-img-top img-fluid" alt="京都・嵐山">
-                        <div class="card-body">
-                            <span class="badge bg-primary mb-2">国内旅行</span>
-                            <span class="badge bg-success mb-2">シーズン</span>
-                            <h5 class="card-title fw-bold card-title-nowrap">京都・嵐山 竹林の小径</h5>
-                            <p class="card-text text-muted text-clamp-3">静寂に包まれた竹林の中を歩く、京都を代表する観光名所。四季折々の美しさがあり、特に早朝の散策は心が洗われるような体験を提供します。</p>
-                            <a href="spot-detail.html" class="stretched-link"></a>
-                            <div class="d-flex flex-column flex-sm-row flex-md-column flex-lg-row justify-content-between align-items-start align-items-sm-center align-items-md-start align-items-lg-center">
-                                <div class="rating-stars mb-2 mb-sm-0 mb-md-2 mb-lg-0">
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-half"></i>
-                                    <span class="text-dark ms-1">4.7</span>
+                <div class="col-12">
+                    <div class="card spot-card-horizontal">
+                        <img src="images/spot-arashiyama-key.jpg" alt="京都">
+                        <div class="card-body d-flex flex-column justify-content-center">
+                            <div>
+                                <span class="badge bg-primary mb-2">国内旅行</span>
+                                <h3 class="fw-bold">京都・嵐山 竹林の小径</h3>
+                                <p class="text-muted">静寂に包まれた竹林の中を歩く、京都を代表する観光名所。早朝の散策が特におすすめです。</p>
+                            </div>
+                            <div class="mt-auto d-flex justify-content-between align-items-center">
+                                <div class="rating text-warning">
+                                    <i class="bi bi-star-fill"></i> 4.7 <span class="text-muted small">(3,120件)</span>
                                 </div>
-                                <small class="text-muted">3,120件の口コミ</small>
+                                <a href="#" class="btn btn-dark btn-sm rounded-pill">詳細を見る</a>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="col-md-4">
-                    <div class="card spot-card">
-                        <img src="images/pixta_54999629_M.jpg" class="card-img-top" alt="北海道・富良野">
-                        <div class="card-body">
-                            <span class="badge bg-primary mb-2">国内旅行</span>
-                            <span class="badge bg-success mb-2">シーズン</span>
-                            <h5 class="card-title fw-bold card-title-nowrap">富良野・ラベンダー畑</h5>
-                            <p class="card-text text-muted text-clamp-3">夏に訪れたい絶景スポット。一面に広がる紫色の絨毯と、爽やかな北海道の風が、都会の喧騒を忘れさせてくれる至福のひとときを約束します。</p>
-                            <div class="d-flex flex-column flex-sm-row flex-md-column flex-lg-row justify-content-between align-items-start align-items-sm-center align-items-md-start align-items-lg-center">
-                                <div class="rating-stars mb-2 mb-sm-0 mb-md-2 mb-lg-0">
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <span class="text-dark ms-1">4.9</span>
-                                </div>
-                                <small class="text-muted">2,850件の口コミ</small>
+            </div>
+        </section>
+        <section class="mb-5">
+            <div class="row g-4">
+                <div class="col-12">
+                    <div class="card spot-card-horizontal">
+                        <img src="images/2.jpg" alt="京都">
+                        <div class="card-body d-flex flex-column justify-content-center">
+                            <div>
+                                <span class="badge bg-primary mb-2">国内旅行</span>
+                                <h3 class="fw-bold">京都・伏見稲荷大社</h3>
+                                <p class="text-muted">約1万基の朱塗り鳥居が続く「千本鳥居」が最大の絶景スポットであり、商売繁盛の神様として親しまれる歴史ある神社。神社が好きな方には特におすすめです。</p>
                             </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card spot-card">
-                        <img src="images/travelguide_174_01.jpg" class="card-img-top" alt="沖縄・宮古島">
-                        <div class="card-body">
-                            <span class="badge bg-info mb-2">リゾート</span>
-                            <span class="badge bg-success mb-2">人気上昇中</span>
-                            <h5 class="card-title fw-bold card-title-nowrap">宮古島・与那覇前浜ビーチ</h5>
-                            <p class="card-text text-muted text-clamp-3">「東洋一の美しさ」と称される白い砂浜とエメラルドグリーンの海。マリンスポーツはもちろん、沈む夕日を眺めながらの贅沢な時間を過ごせます。</p>
-                            <div class="d-flex flex-column flex-sm-row flex-md-column flex-lg-row justify-content-between align-items-start align-items-sm-center align-items-md-start align-items-lg-center">
-                                <div class="rating-stars mb-2 mb-sm-0 mb-md-2 mb-lg-0">
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star"></i>
-                                    <span class="text-dark ms-1">4.4</span>
+                            <div class="mt-auto d-flex justify-content-between align-items-center">
+                                <div class="rating text-warning">
+                                    <i class="bi bi-star-fill"></i> 4.5 <span class="text-muted small">(4,100件)</span>
                                 </div>
-                                <small class="text-muted">1,540件の口コミ</small>
+                                <a href="#" class="btn btn-dark btn-sm rounded-pill">詳細を見る</a>
                             </div>
                         </div>
                     </div>
@@ -187,65 +180,23 @@
         </section>
 
         <section class="mb-5">
-            <div class="container">
-                <div class="d-flex justify-content-between align-items-center mb-4">
-                    <h2 class="fw-bold">
-                        <i class="bi bi-trophy-fill text-warning"></i> 人気ランキング
-                    </h2>
-                    <ul class="nav nav-pills" id="rankingTabTop" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="weeklyTabTop" data-bs-toggle="pill"
-                                data-bs-target="#weeklyTop" type="button" role="tab">
-                                週間
-                            </button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="monthlyTabTop" data-bs-toggle="pill"
-                                data-bs-target="#monthlyTop" type="button" role="tab">
-                                月間
-                            </button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="seasonalTabTop" data-bs-toggle="pill"
-                                data-bs-target="#seasonalTop" type="button" role="tab">
-                                年間
-                            </button>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="tab-content" id="rankingTabContent">
-                    <div class="tab-pane fade show active" id="weeklyTop" role="tabpanel">
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <div class="card ranking-card">
-                                    <div class="card-body">
-                                        <div class="row align-items-center">
-                                            <div class="col-2 text-center">
-                                                <div class="ranking-number">1</div>
-                                            </div>
-                                            <div class="col-3">
-                                                <img src="images/photo01.jpg" class="img-fluid rounded" alt="白川郷">
-                                            </div>
-                                            <div class="col-7">
-                                                <span class="badge bg-warning text-dark mb-2">1位</span>
-                                                <h5 class="fw-bold mb-2 card-title-nowrap">世界遺産・白川郷</h5>
-                                                <p class="text-muted small mb-2 text-clamp-2">合掌造りの集落が残る日本の原風景。冬のライトアップは幻想的で、世界中から観光客が訪れます。</p>
-                                                <div class="rating-stars small">
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-half"></i>
-                                                    <span class="text-dark">4.9</span>
-                                                </div>
-                                                <small class="text-muted">5,620件の口コミ</small>
-                                            </div>
-                                        </div>
-                                    </div>
+            <div class="row g-4">
+                <div class="col-12">
+                    <div class="card spot-card-horizontal">
+                        <img src="images/kiyomizudera-midokoro_thumb.webp" alt="京都">
+                        <div class="card-body d-flex flex-column justify-content-center">
+                            <div>
+                                <span class="badge bg-primary mb-2">国内旅行</span>
+                                <h3 class="fw-bold">京都・清水寺</h3>
+                                <p class="text-muted">国宝「清水の舞台」から京都市街を一望する絶景や、釘を使わない「継ぎ手」技術の建築美が見どころ。音羽の瀧の清水、三重塔、桜・紅葉・冬の雪景色も魅力です。夜間特別拝観のライトアップ、周辺の「二年坂・三年坂」散策もおすすめ。</p>
+                            </div>
+                            <div class="mt-auto d-flex justify-content-between align-items-center">
+                                <div class="rating text-warning">
+                                    <i class="bi bi-star-fill"></i> 4.5 <span class="text-muted small">(4,100件)</span>
                                 </div>
+                                <a href="#" class="btn btn-dark btn-sm rounded-pill">詳細を見る</a>
                             </div>
-                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
