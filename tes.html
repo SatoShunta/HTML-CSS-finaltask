@@ -4,156 +4,277 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TabiMemo - 旅行先・観光スポット検索</title>
+    <title>行きたいリスト - TabiMemo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="base.css">
+    <link rel="icon" href="Gemini_Generated_Image_5wv1f05wv1f05wv1.png">
     <style>
-        /* レイアウト変更用の追加スタイル */
-        .hero-section {
-            padding: 60px 0; /* 高さを抑えてすぐにコンテンツが見えるように変更 */
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('images/hero-bg.jpg') center/cover;
-        }
-
-        /* 横長カード形式 (注目スポット用) */
-        .spot-card-horizontal {
-            display: flex;
-            flex-direction: row;
-            border: none;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            border-radius: 15px;
-            overflow: hidden;
-            transition: transform 0.3s ease;
-        }
-        .spot-card-horizontal:hover { transform: translateY(-5px); }
-        .spot-card-horizontal img {
-            width: 40%;
-            height: 250px;
-            object-fit: cover;
-        }
-        .spot-card-horizontal .card-body {
-            width: 60%;
-            padding: 1.5rem;
-        }
-
-        /* ランキングのグリッドデザイン変更 */
-        .ranking-grid-item {
-            background: #fff;
-            border-radius: 12px;
-            padding: 1rem;
-            border: 1px solid #eee;
-            position: relative;
-        }
-        .ranking-badge-top {
-            position: absolute;
-            top: -10px;
-            left: 10px;
-            z-index: 10;
-            padding: 5px 15px;
+        /* 統計カードをランキングページのカードデザインと統一 */
+        .stat-card {
+            border: none !important;
             border-radius: 20px;
-            font-weight: bold;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: #fff;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
         }
 
-        @media (max-width: 768px) {
-            .spot-card-horizontal { flex-direction: column; }
-            .spot-card-horizontal img { width: 100%; height: 200px; }
-            .spot-card-horizontal .card-body { width: 100%; }
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        /* アイコンを囲む円形の背景 */
+        .stat-icon-wrapper {
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin: 0 auto 1rem;
+        }
+
+        /* 各ステータスの背景色 */
+        .bg-light-primary {
+            background-color: #e7f1ff;
+        }
+
+        .bg-light-success {
+            background-color: #e8f5e9;
+        }
+
+        .bg-light-warning {
+            background-color: #fff8e1;
+        }
+
+        .bg-light-danger {
+            background-color: #ffebee;
+        }
+
+        /* その他テーブル用スタイル（既存維持） */
+        .anime-thumbnail {
+            width: 80px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 8px;
         }
     </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="#"><i class="bi bi-airplane-engines"></i> TabiMemo</a>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active" href="#">ホーム</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">目的地一覧</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">ランキング</a></li>
-                </ul>
-                <a href="#" class="btn btn-outline-light ms-3">ログイン</a>
-            </div>
+            <a class="navbar-brand fw-bold" href="#">
+                <i class="bi bi-airplane-engines"></i> TabiMemo
+            </a>
         </div>
     </nav>
 
-    <div class="hero-section text-white text-center">
-        <div class="container">
-            <h1 class="display-5 fw-bold mb-3">次の旅先、見つけよう</h1>
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <div class="bg-white p-2 rounded-pill shadow d-flex">
-                        <input type="text" class="form-control border-0 rounded-pill" placeholder="どこへ行きたいですか？">
-                        <button class="btn btn-primary rounded-pill px-4 ms-2">検索</button>
+    <div class="page-heading">
+        <div class="container py-5 text-center">
+            <h1 class="display-4 fw-bold mb-3">
+                <i class="bi bi-star-fill text-warning"></i> マイ行きたいリスト
+            </h1>
+            <p class="lead">あなたの旅の記録と計画を管理しよう</p>
+        </div>
+    </div>
+
+    <div class="container pb-5">
+        <div class="row g-4 mb-5">
+            <div class="col-6 col-md-3">
+                <div class="card stat-card bg-light-primary h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="stat-icon-wrapper">
+                            <i class="bi bi-play-circle-fill text-primary fs-2"></i>
+                        </div>
+                        <h3 class="fw-bold mb-1">12</h3>
+                        <p class="text-muted small mb-0 fw-bold">もう一度行きたい</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="card stat-card bg-light-success h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="stat-icon-wrapper">
+                            <i class="bi bi-check-circle-fill text-success fs-2"></i>
+                        </div>
+                        <h3 class="fw-bold mb-1">45</h3>
+                        <p class="text-muted small mb-0 fw-bold">訪問済み</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="card stat-card bg-light-warning h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="stat-icon-wrapper">
+                            <i class="bi bi-clock-fill text-warning fs-2"></i>
+                        </div>
+                        <h3 class="fw-bold mb-1">23</h3>
+                        <p class="text-muted small mb-0 fw-bold">訪問予定</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="card stat-card bg-light-danger h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="stat-icon-wrapper">
+                            <i class="bi bi-x-circle-fill text-danger fs-2"></i>
+                        </div>
+                        <h3 class="fw-bold mb-1">8</h3>
+                        <p class="text-muted small mb-0 fw-bold">訪問中断</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <ul class="nav nav-pills nav-fill mb-4" id="myTab" role="tablist">
+            <li class="nav-item">
+                <button class="nav-link active" id="watching-tab" data-bs-toggle="pill" data-bs-target="#watching"
+                    type="button">
+                    <i class="bi bi-play-circle"></i> もう一度 (12)
+                </button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" id="completed-tab" data-bs-toggle="pill" data-bs-target="#completed"
+                    type="button">
+                    <i class="bi bi-check-circle"></i> 訪問済み (45)
+                </button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" id="plantowatch-tab" data-bs-toggle="pill" data-bs-target="#plantowatch"
+                    type="button">
+                    <i class="bi bi-clock"></i> 訪問予定 (23)
+                </button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" id="dropped-tab" data-bs-toggle="pill" data-bs-target="#dropped" type="button">
+                    <i class="bi bi-x-circle"></i> 中断 (8)
+                </button>
+            </li>
+        </ul>
+
+    </div>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="watching" role="tabpanel">
+            <div class="card mb-4 border-0 shadow-sm" style="border-radius: 15px; overflow: hidden;">
+                <div class="card-header bg-primary text-white py-3">
+                    <h5 class="mb-0 fw-bold"><i class="bi bi-play-circle-fill"></i> もう一度行きたいスポット</h5>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive-md">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th style="width: 120px;" class="ps-4">スポット</th>
+                                    <th>名称・エリア</th>
+                                    <th style="width: 150px;">マイ評価</th>
+                                    <th style="width: 200px;">旅行計画状況</th>
+                                    <th style="width: 150px;">最終訪問日</th>
+                                    <th style="width: 120px;" class="text-center">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="anime-table-card">
+                                    <td class="ps-4">
+                                        <img src="images/spot-arashiyama-key.jpg" class="anime-thumbnail" alt="嵐山"
+                                            style="width: 90px; height: 60px; object-fit: cover; border-radius: 8px;">
+                                    </td>
+                                    <td>
+                                        <h6 class="mb-1 fw-bold text-clamp-2">京都・嵐山（渡月橋付近）</h6>
+                                        <div>
+                                            <span class="badge bg-primary status-badge">自然・景勝地</span>
+                                            <span class="badge bg-success status-badge">シーズン中</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="rating-stars text-warning">
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-half"></i>
+                                        </div>
+                                        <small class="text-muted fw-bold">4.8</small>
+                                    </td>
+                                    <td>
+                                        <div class="mb-1">
+                                            <small class="text-muted">予約完了率: 80%</small>
+                                        </div>
+                                        <div class="progress progress-custom" style="height: 8px;">
+                                            <div class="progress-bar bg-primary" style="width: 80%"></div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <small class="text-muted">2024/11/15</small>
+                                    </td>
+                                    <td class="text-center">
+                                        <button class="btn btn-sm btn-outline-primary rounded-pill" title="詳細">
+                                            <i class="bi bi-search"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-danger rounded-pill" title="削除">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <tr class="anime-table-card">
+                                    <td class="ps-4">
+                                        <img src="images/2.jpg" class="anime-thumbnail" alt="伏見稲荷"
+                                            style="width: 90px; height: 60px; object-fit: cover; border-radius: 8px;">
+                                    </td>
+                                    <td>
+                                        <h6 class="mb-1 fw-bold text-clamp-2">伏見稲荷大社</h6>
+                                        <div>
+                                            <span class="badge bg-danger status-badge">神社仏閣</span>
+                                            <span class="badge bg-secondary status-badge">混雑注意</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="rating-stars text-warning">
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star"></i>
+                                        </div>
+                                        <small class="text-muted fw-bold">4.0</small>
+                                    </td>
+                                    <td>
+                                        <div class="mb-1">
+                                            <small class="text-muted">予算計画: 50%</small>
+                                        </div>
+                                        <div class="progress progress-custom" style="height: 8px;">
+                                            <div class="progress-bar bg-danger" style="width: 50%"></div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <small class="text-muted">2025/01/10</small>
+                                    </td>
+                                    <td class="text-center">
+                                        <button class="btn btn-sm btn-outline-primary rounded-pill" title="詳細">
+                                            <i class="bi bi-search"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-danger rounded-pill" title="削除">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</body>
 
-    <div class="container mt-5">
-        <section class="mb-5">
-            <h2 class="fw-bold mb-4"><i class="bi bi-geo-alt-fill text-danger"></i> 今月の編集部おすすめ</h2>
-            <div class="row g-4">
-                <div class="col-12">
-                    <div class="card spot-card-horizontal">
-                        <img src="images/kyoto.webp" alt="京都">
-                        <div class="card-body d-flex flex-column justify-content-center">
-                            <div>
-                                <span class="badge bg-primary mb-2">国内旅行</span>
-                                <h3 class="fw-bold">京都・嵐山 竹林の小径</h3>
-                                <p class="text-muted">静寂に包まれた竹林の中を歩く、京都を代表する観光名所。早朝の散策が特におすすめです。</p>
-                            </div>
-                            <div class="mt-auto d-flex justify-content-between align-items-center">
-                                <div class="rating text-warning">
-                                    <i class="bi bi-star-fill"></i> 4.7 <span class="text-muted small">(3,120件)</span>
-                                </div>
-                                <a href="#" class="btn btn-dark btn-sm rounded-pill">詳細を見る</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                </div>
-        </section>
-
-        <section class="mb-5 py-4 bg-light rounded-4 px-3">
-            <div class="d-flex justify-content-between align-items-end mb-4">
-                <h2 class="fw-bold mb-0"><i class="bi bi-trophy-fill text-warning"></i> 人気ランキング</h2>
-                <div class="btn-group btn-group-sm">
-                    <button class="btn btn-outline-secondary active">週間</button>
-                    <button class="btn btn-outline-secondary">月間</button>
-                </div>
-            </div>
-            
-            <div class="row g-3">
-                <div class="col-6 col-md-3">
-                    <div class="ranking-grid-item">
-                        <span class="ranking-badge-top bg-warning text-dark">No.1</span>
-                        <img src="images/spot1.webp" class="img-fluid rounded mb-2" alt="1位">
-                        <h6 class="fw-bold mb-1">白川郷</h6>
-                        <p class="small text-muted mb-0">岐阜県・世界遺産</p>
-                    </div>
-                </div>
-                <div class="col-6 col-md-3">
-                    <div class="ranking-grid-item text-center">
-                        <span class="ranking-badge-top bg-secondary text-white">No.2</span>
-                        <img src="images/spot2.webp" class="img-fluid rounded mb-2" alt="2位">
-                        <h6 class="fw-bold mb-1">宮古島</h6>
-                        <p class="small text-muted mb-0">沖縄県・ビーチ</p>
-                    </div>
-                </div>
-                </div>
-        </section>
-
-        <section class="mb-5">
-            <h2 class="fw-bold mb-4"><i class="bi bi-grid-3x3-gap-fill"></i> 目的から探す</h2>
-            <div class="row g-3">
-                </div>
-        </section>
-    </div>
-
-    </body>
 </html>
